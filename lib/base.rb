@@ -14,6 +14,16 @@ class Base
       tube.put({type: 'image', image: '/home/ubuntu/yowsup-queue-rails-demo/sample.jpg', address: job['address']}.to_json)
     when '/video'
       # To be implemented
+    when '/h', '/help'
+      #help commands
+      help_text = %Q(
+        [HELP] - Commands
+        /help or /h - Show this message
+        /hi - Replies Hey, what\'s up?
+        /echo - Echo
+        /image - Sends an images
+      )
+      tube.put({type: 'simple', body: help_text, address: job['address']}.to_json)
     else
       tube.put({type: 'simple', body: 'sorry, no command found', address: job['address']}.to_json)
     end
