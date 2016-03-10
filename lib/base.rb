@@ -13,8 +13,7 @@ class Base
     when '/image'
       tube.put({type: 'image', image: '/home/ubuntu/yowsup-queue-rails-demo/sample.jpg', address: job['address']}.to_json)
     when '/video'
-      tube.put({type: 'image', image: '/home/ubuntu/homeberry/sample.mp4', address: job['address']}.to_json)
-      puts 'hey, video'
+      # To be implemented
     else
       tube.put({type: 'simple', body: 'sorry, no command found', address: job['address']}.to_json)
     end
