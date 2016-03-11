@@ -1,3 +1,5 @@
+require './lib/pnr'
+require './lib/help'
 class Base
   def initialize
   end
@@ -15,15 +17,19 @@ class Base
       tube.put({type: 'image', image: '/home/ubuntu/yowsup-queue-rails-demo/sample.jpg', address: job['address']}.to_json)
     when '/video'
       # To be implemented
+    when '/pnr'
+      status = Pnr.new.run(commands[1])
+      tube.put({type: 'simple', body: status, address: job['address']}.to_json)
     when '/h', '/help'
       #help commands
-      help_text = %Q([HELP] - Commands
-
-/help or /h - Show this message
-/hi - Replies Hey, what\'s up?
-/echo - Echo
-/image - Sends an images)
-      tube.put({type: 'simple', body: help_text, address: job['address']}.to_json)
+      help_text = Help.new.run()
+      tube.put({type: 'simple', body: help_text.to_s, address: job['address']}.to_json)
+    when '/about'
+      about_text = %Q(-By
+Praveen Kumar S.
+Krishnakumar S.
+      )
+      tube.put({type: 'simple', body: about_text, address: job['address']}.to_json)
     else
       if main_command[0] == '/'
         tube.put({type: 'simple', body: 'sorry, no command found', address: job['address']}.to_json)
