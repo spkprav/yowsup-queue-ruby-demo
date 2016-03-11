@@ -1,5 +1,4 @@
-require './lib/pnr'
-require './lib/help'
+require './lib/tasks/*'
 class Base
   def initialize
   end
@@ -20,6 +19,9 @@ class Base
     when '/pnr'
       status = Pnr.new.run(commands[1])
       tube.put({type: 'simple', body: status, address: job['address']}.to_json)
+    when '/news'
+      news = News.new.run()
+      tube.put({type: 'simple', body: news, address: job['address']}.to_json)
     when '/h', '/help'
       #help commands
       help_text = Help.new.run()

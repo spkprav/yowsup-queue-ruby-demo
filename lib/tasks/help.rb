@@ -12,6 +12,7 @@ class Help
 /echo - Echo
 /about - about text
 /image - Sends an images
+/news - get latest news
 /pnr 1234567890 - Check your pnr status)
   return txt
   end
