@@ -1,6 +1,6 @@
-## Yowsup Queue Ruby Demo
+## Yowsup Stalker Ruby Demo
 
-This application is an integration demo of [Yowsup Queue](https://github.com/EliasKotlyar/yowsup-queue) in Ruby.
+This application is an integration demo of [Yowsup Stalker](https://github.com/spkprav/yowsup-stalker) in Ruby.
 
 ## Setup and start
 - Install Yowsup queue
