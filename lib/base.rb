@@ -1,4 +1,4 @@
-require './lib/tasks/*'
+Dir["./lib/tasks/*.rb"].each {|file| require file }
 class Base
   def initialize
   end
