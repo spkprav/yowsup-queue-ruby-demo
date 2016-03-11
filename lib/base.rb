@@ -12,8 +12,9 @@ class Base
       cmd = job['body'].split(' ')[1..-1].join(' ')
       tube.put({type: 'simple', body: cmd, address: job['address']}.to_json)
     when '/image'
-      tube.put({type: 'image', image: '/home/ubuntu/yowsup-queue-rails-demo/sample.jpg', address: job['address']}.to_json)
+      tube.put({type: 'image', image: '/home/praveen/projects/mine/ruby/yowsup-queue-ruby-demo/sample.jpg', address: job['address']}.to_json)
     when '/video'
+      tube.put({type: 'video', video: '/home/praveen/projects/mine/python/yowsup-stalker/sample.mp4', address: job['address']}.to_json)
       # To be implemented
     when '/h', '/help'
       #help commands
