@@ -1,3 +1,4 @@
+Dir["./lib/tasks/*.rb"].each {|file| require file }
 class Base
   def initialize
   end
@@ -16,15 +17,22 @@ class Base
     when '/video'
       tube.put({type: 'video', video: '/home/praveen/projects/mine/python/yowsup-stalker/sample.mp4', address: job['address']}.to_json)
       # To be implemented
+    when '/pnr'
+      status = Pnr.new.run(commands[1])
+      tube.put({type: 'simple', body: status, address: job['address']}.to_json)
+    when '/news'
+      news = News.new.run()
+      tube.put({type: 'simple', body: news, address: job['address']}.to_json)
     when '/h', '/help'
       #help commands
-      help_text = %Q([HELP] - Commands
-
-/help or /h - Show this message
-/hi - Replies Hey, what\'s up?
-/echo - Echo
-/image - Sends an images)
-      tube.put({type: 'simple', body: help_text, address: job['address']}.to_json)
+      help_text = Help.new.run()
+      tube.put({type: 'simple', body: help_text.to_s, address: job['address']}.to_json)
+    when '/about'
+      about_text = %Q(-By
+Praveen Kumar S.
+Krishnakumar S.
+      )
+      tube.put({type: 'simple', body: about_text, address: job['address']}.to_json)
     else
       if main_command[0] == '/'
         tube.put({type: 'simple', body: 'sorry, no command found', address: job['address']}.to_json)
