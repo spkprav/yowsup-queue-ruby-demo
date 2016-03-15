@@ -23,6 +23,10 @@ class Base
     when '/news'
       news = News.new.run()
       tube.put({type: 'simple', body: news, address: job['address']}.to_json)
+    when '/cricket'
+      cmd = job['body'].split(' ')[1..-1].join(' ')
+      score = Cricket.new.run()
+      tube.put({type: 'simple', body: score, address: job['address']}.to_json)
     when '/h', '/help'
       #help commands
       help_text = Help.new.run()
