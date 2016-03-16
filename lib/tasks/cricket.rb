@@ -6,7 +6,7 @@ class Cricket
 
   def run (team = nil)
     url = "http://static.cricinfo.com/rss/livescores.xml"
-    flag = 0
+    flag = 1
     feeds = Feedjira::Feed.fetch_and_parse url
     text = "Cricket Score\n"
     puts "team ---> #{team}"
