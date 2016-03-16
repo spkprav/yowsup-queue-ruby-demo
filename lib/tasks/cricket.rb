@@ -27,6 +27,6 @@ class Cricket
     if flag == 1
       text = "No recent match for team #{team}"
     end
-    puts "#{text}"
+    return text
   end
 end
